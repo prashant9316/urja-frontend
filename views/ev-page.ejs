@@ -1,0 +1,129 @@
+<%- include('./common/header.ejs') %>
+<div id="body-wrapper">
+    <main>
+        <div class="post-content">
+            <div>
+                <div class="banner-flex-wrap" style="display: flex; flex-direction: column; ">
+                    <div class="banner scroll-button-container banner-fixed-attachment banner-full-height has-heading"
+                        data-transition-duration="0.5" data-rapid-transition-duration="0.1"
+                        data-transition-wait="5" data-transition-type="fade">
+                        <div class="banner-slideshow">
+                            <div data-bgd-image="https://www.supersoco.co.uk/wp-content/uploads/2021/03/about_banner.jpg"
+                                class="banner-slideshow-item banner-slideshow-item-center show"
+                                style="background-image: url('../wp-content/uploads/2021/03/about_banner-1500x1000.jpg');">
+                                <div class="banner-overlay banner-overlay-none"></div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-content banner-content-left">
+                            <div>
+                                <div class="banner-heading">
+                                    <h1><span>Electric Vehicles</span></h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="banner-scroll-down">
+                            <div>
+                                <div class="scroll-down-button">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="soco-pic-links">
+                    <h1 id="text-shown">Loading Electric Vehicles...</h1>
+                    <div id="vehicle-parent">
+                        <a class="item rise-up" href="#">
+                            <div class="image"><img loading="lazy" alt="Super Soco TC Max lifesttyle image"
+                                    src="../wp-content/uploads/2021/03/159761657_119849676818897_4263285817108746248_o.jpg"
+                                    srcset="../wp-content/uploads/2021/03/159761657_119849676818897_4263285817108746248_o-300x300.jpg 300w, ../wp-content/uploads/2021/03/159761657_119849676818897_4263285817108746248_o-1024x1024.jpg 1024w, ../wp-content/uploads/2021/03/159761657_119849676818897_4263285817108746248_o-150x150.jpg 150w, ../wp-content/uploads/2021/03/159761657_119849676818897_4263285817108746248_o-768x768.jpg 768w, ../wp-content/uploads/2021/03/159761657_119849676818897_4263285817108746248_o-1000x1000.jpg 1000w, ../wp-content/uploads/2021/03/159761657_119849676818897_4263285817108746248_o.jpg 1080w"
+                                    width="1080" height="1080" style="object-fit: contain;" /></div>
+                            <div class="text">
+                                <div>
+                                    <h2>Loading Details...</h2>
+                                    <div class="description">Loading Details...
+                                    </div>
+                                    <hr>
+                                    <button type="button">Book it for Rs 500/-</button>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- <a class="item rise-up" href="../getting-started/index.htm">
+                            <div class="image"><img loading="lazy"
+                                    alt="Super Soco TC Max electric motorcycle being ridden"
+                                    src="../wp-content/uploads/2020/12/Super_Soco_Milan16-1.jpg"
+                                    srcset="../wp-content/uploads/2020/12/Super_Soco_Milan16-1-300x232.jpg 300w, ../wp-content/uploads/2020/12/Super_Soco_Milan16-1-1024x793.jpg 1024w, ../wp-content/uploads/2020/12/Super_Soco_Milan16-1-768x595.jpg 768w, ../wp-content/uploads/2020/12/Super_Soco_Milan16-1-1536x1190.jpg 1536w, ../wp-content/uploads/2020/12/Super_Soco_Milan16-1-1291x1000.jpg 1291w, ../wp-content/uploads/2020/12/Super_Soco_Milan16-1.jpg 1549w"
+                                    width="1549" height="1200"></div>
+                            <div class="text">
+                                <div>
+                                    <h2>Getting Started</h2>
+                                    <div class="description">Want to know more about the route to riding? Check
+                                        out our resources to help you set off in the right direction.</div>
+                                </div>
+                            </div>
+                        </a> -->
+                    </div>
+                </section>
+
+                <script>
+                    const infoText = document.getElementById('text-shown');
+                    const parentDiv = document.getElementById('vehicle-parent')
+                    let data;
+                    
+                    window.addEventListener('DOMContentLoaded', async() => {
+                        await fetch('http://13.58.168.111:5544/api/61212df361090c6380388817/product')
+                        .then(res => res.json())
+                        .then(res => {
+                            data = res.data;
+                            parentDiv.innerHTML = ''
+                            console.log(data)
+                            for(var i = 0; i < data.length; i++){
+                                if(i != 2){
+
+                                    parentDiv.innerHTML += `<a class="item rise-up" href="https://rzp.io/l/Y6dBuzHdK">
+                                <div class="image"><img loading="lazy" alt="Super Soco TC Max lifesttyle image"
+                                        src="${data[i].image}"
+                                        srcset="${data[i].image}"
+                                        width="1080" height="1080" style="object-fit: contain;" /></div>
+                                <div class="text">
+                                    <div>
+                                        <h2>${data[i].name}</h2>
+                                        <div class="description">${data[i].description}
+                                        </div>
+                                        <hr>
+                                        <button type="button">Book it for Rs ${data[i].price}/-</button>
+                                    </div>
+                                </div>
+                            </a>`
+                                } else {
+                                    parentDiv.innerHTML += `<a class="item rise-up" href="https://rzp.io/l/GFcq1Tp">
+                                <div class="image"><img loading="lazy" alt="Super Soco TC Max lifesttyle image"
+                                        src="${data[i].image}"
+                                        srcset="${data[i].image}"
+                                        width="1080" height="1080" style="object-fit: contain;" /></div>
+                                <div class="text">
+                                    <div>
+                                        <h2>${data[i].name}</h2>
+                                        <div class="description">${data[i].description}
+                                        </div>
+                                        <hr>
+                                        <button type="button">Book it for Rs ${data[i].price}/-</button>
+                                    </div>
+                                </div>
+                            </a>`
+                                }
+                        infoText.innerHTML = '<h1>All Electric Vehicles</h1>'
+                            }
+                        })
+                        .catch(err => {
+                            alert("Error while loading Electric Vehicles!")
+                        })
+                    }, false);
+                </script>
+                
+            </div>
+        </div>
+    </main>
+</div>
+<%- include('./common/footer.ejs') %>

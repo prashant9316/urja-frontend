@@ -1,0 +1,142 @@
+const router = require('express').Router()
+
+
+router.get('/', (req, res) => {
+    return res.render('index')
+})
+
+
+
+router.get('/electric-vehicles', (req, res) => {
+    return res.render('ev-page')
+})
+
+
+
+router.get('/products', (req, res) => {
+    return res.render('products')
+})
+
+
+router.get('/products/:id', (req, res) => {
+    return res.render('categories', {
+        categoryId: req.params.id
+    })
+})
+
+
+router.get('/about', (req, res) => {
+    return res.render('about')
+})
+
+
+router.get('/about-ceo', (req, res) => {
+    return res.render('ceo')
+})
+
+
+router.get('/board-of-directors', (req, res) => {
+    return res.render('board-directors')
+})
+
+
+router.get('/key-positions', (req, res) => {
+    return res.render('key-positions')
+})
+
+router.get('/projects', (req, res) => {
+    return res.render('projects')
+})
+
+
+router.get('/contact', (req, res) => {
+    return res.render('contact')
+})
+
+
+
+router.get('/categories', (req, res) => {
+    return res.render('categories')
+})
+
+
+
+router.get('/solar-projects', (req, res) => {
+    return res.render('solar-projects')
+})
+
+
+
+router.get('/business-partners', (req, res) => {
+    return res.render('business-partners')
+})
+
+
+
+router.get('/company-overview', (req, res) => {
+    return res.render('company-overview')
+})
+
+
+
+router.get('/vision-and-mission', (req, res) => {
+    return res.render('vision-mission')
+})
+
+
+
+router.get('/franchisee', (req, res) => {
+    return res.render('franchisee')
+})
+
+
+
+router.get('/blog', (req, res) => {
+    return res.render('blogs')
+})
+
+
+
+router.get('/gallery', (req, res) => {
+    return res.render('gallery')
+})
+
+
+
+router.get('/cart', (req, res) => {
+    return res.render('cart')
+})
+
+
+
+router.get('/terms-and-conditions', (req, res) => {
+    return res.render('tnc')
+})
+
+
+
+router.get('/privacy-policy', (req, res) => {
+    return res.render('privacy')
+})
+
+
+
+router.get('/refund-policy', (req, res) => {
+    return res.render('refund-policy')
+})
+
+
+
+router.get('/career', (req, res) => {
+    return res.render('career')
+})
+
+
+
+router.get('/prodcts/:id', (req, res) => {
+    return res.render('product')
+})
+
+
+
+module.exports = router;

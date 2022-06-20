@@ -1,0 +1,216 @@
+<%- include('./common/header.ejs') %>
+    <div id="body-wrapper">
+        <main>
+            <div class="post-content">
+                <div>
+                    <div class="banner-flex-wrap" style="display: flex; flex-direction: column; ">
+                        <div class="banner scroll-button-container banner-fixed-attachment banner-full-height has-heading"
+                            data-transition-duration="0.5" data-rapid-transition-duration="0.1" data-transition-wait="5"
+                            data-transition-type="fade">
+                            <div class="banner-slideshow">
+                                <div data-bgd-image="https://www.supersoco.co.uk/wp-content/uploads/2021/03/finance_insurance_banner.jpg"
+                                    class="banner-slideshow-item banner-slideshow-item-center show"
+                                    style="background-image: url('../wp-content/uploads/2021/03/finance_insurance_banner-1500x1000.jpg');">
+                                    <div class="banner-overlay banner-overlay-none"></div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="banner-content banner-content-left">
+                                <div>
+                                    <div class="banner-heading">
+                                        <h1 id="mainHeading"><span style="color:rgb(57, 189, 57);">PRODUCTS</span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="banner-scroll-down">
+                                <div>
+                                    <div class="scroll-down-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <section class="rich-text">
+                        <div>
+                            <div style="text-align: center;">
+                                <h3 style="text-decoration: underline 7px; text-decoration-color: rgb(57, 189, 57);"><strong id="categoryText">PRODUCTS IN CATEGORY</strong></h3>
+                                <!-- <p style="font-weight: 300; font-style: bold;"><strong>Urja Global Limited is in one of India’s leading Renewable Energy developers.</strong></p> -->
+                                <!-- <p>Website &#8211; <a
+                                        href="https://www.santanderconsumer.co.uk/">https://www.santanderconsumer.co.uk/</a>
+                                </p> -->
+                                <!-- <p><img src="../wp-content/uploads/2021/03/scuk-logo-300x125.png" alt="Santander"> -->
+                                <!-- </p>
+                                <p style="text-align: justify;">
+                                    Urja Global Limited is in one of India’s leading Renewable Energy developers and operators. Urja is engaged in design, consultancy, integration, supply, installation, commissioning & maintenance of off-grid and grid connected Solar Power Plants. We are approved Channel Partners of Ministry of New and Renewable Energy (MNRE), Govt. of India.
+                                </p> -->
+                                <!-- <h2 id="tablepress-1-name" class="tablepress-table-name tablepress-table-name-id-1">
+                                    Representative Purchase Plan Finance Example</h2> -->
+                            </div>
+                        </div>
+                    </section>
+                    
+
+                    <script>
+                        const categoryId = '<%= categoryId %>';
+                        console.log(categoryId);
+                        let categoryName = ''
+
+                        window.onload = async() => {
+                            await fetch(`http://13.58.168.111:5544/api/${categoryId}/product`)
+                            .then(res => res.json())
+                            .then(res => {
+                                console.log(res)
+                                if(res.data.length > 0){
+                                    categoryName = res.data[0].categoryName;
+                                    document.getElementById('categoryText').innerHTML = `PRODUCTS IN CATEGORY ${categoryName}`
+                                    document.getElementById('mainHeading').innerHTML = `PRODUCTS<br/><span style="color:rgb(57, 189, 57);">${categoryName}</span>`
+                                    const productsContainer = document.getElementById('parentDiv');
+                                    res.data.forEach(product => {
+                                        productsContainer.innerHTML += `
+                                        <article class="post-item" data-post-item="">
+                                            <div>
+                                                <a class="image" href="/product/${categoryId}/${product.id}"><img
+                                                        loading="lazy" alt="${product.name}"
+                                                        src="${product.image}"
+                                                        srcset="${product.image}"
+                                                        width="2500" height="1667"></a>
+                                                <div class="text">
+                                                    <h2>
+                                                        <a href="/product/${categoryId}/${product.id}">${product.name}</a>
+                                                    </h2>
+                                                    <h3 class="date">₹${product.price}/-</h3>
+                                                    <blockquote>
+                                                        ${product.description}
+                                                    </blockquote>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        `
+                                    })
+                                }
+                            })
+                            .catch(err => {
+                                console.log("ERROR: " + err)
+                            })
+                        }
+                    </script>
+                   
+                   
+                    <section class="soco-blog-feed has-menu">
+                        <div>
+                            <!-- <div class="blog-feed-menu">
+                                <div>
+                                    <div class="nav-item selected" data-post-nav="post">News</div>
+                                    <div class="nav-item" data-post-nav="review">Reviews</div>
+                                </div>
+                            </div> -->
+                            <div class="post-items-wrap show" data-posts="post">
+                                <div id="parentDiv">
+<!--                                     
+                                    <article class="post-item" data-post-item="">
+                                        <div>
+                                            <a class="image" href="introducing-the-cu-mini/index.htm"><img
+                                                    loading="lazy" alt="Super Soco CU mini"
+                                                    src="/wp-content/uploads/2021/11/JA_Super_Soco_CU_mini_web_main_02.jpg"
+                                                    srcset="/wp-content/uploads/2021/11/JA_Super_Soco_CU_mini_web_main_02-300x200.jpg 300w, /wp-content/uploads/2021/11/JA_Super_Soco_CU_mini_web_main_02-1024x683.jpg 1024w, /wp-content/uploads/2021/11/JA_Super_Soco_CU_mini_web_main_02-768x512.jpg 768w, /wp-content/uploads/2021/11/JA_Super_Soco_CU_mini_web_main_02-1536x1024.jpg 1536w, /wp-content/uploads/2021/11/JA_Super_Soco_CU_mini_web_main_02-1500x1000.jpg 1500w"
+                                                    width="2500" height="1667"></a>
+                                            <div class="text">
+                                                <h2>
+                                                    <a href="introducing-the-cu-mini/index.htm">Introducing the CU
+                                                        mini!</a>
+                                                </h2>
+                                                <h3 class="date">03/12/2021</h3>
+                                                <blockquote>Introducing the Super Soco CU mini; the answer to
+                                                    lightweight and affordable electric urban transportation. Safer
+                                                    than an e-scooter, the CU mini redefines just how simple it can
+                                                    be to get around our cities and…</blockquote>
+                                            </div>
+                                        </div>
+                                    </article> -->
+                                    <!-- <article class="post-item" data-post-item="">
+                                        <div>
+                                            <a class="image"
+                                                href=""><img
+                                                    loading="lazy" alt="Super Soco riders at Brands Hatch BSB final"
+                                                    src="/wp-content/uploads/2021/10/BSB-Brands-final.jpg"
+                                                    srcset="/wp-content/uploads/2021/10/BSB-Brands-final-300x200.jpg 300w, wp-content/uploads/2021/10/BSB-Brands-final-1024x683.jpg 1024w, wp-content/uploads/2021/10/BSB-Brands-final-768x512.jpg 768w, wp-content/uploads/2021/10/BSB-Brands-final-1536x1025.jpg 1536w, wp-content/uploads/2021/10/BSB-Brands-final-1499x1000.jpg 1499w"
+                                                    width="2500" height="1668"></a>
+                                            <div class="text">
+                                                <h2>
+                                                    <a href="brands-hatch-british-superbike-finale/index.htm">BSB –
+                                                        Brands delivers in a spectacular showdown!</a>
+                                                </h2>
+                                                <h3 class="date">18/10/2021</h3>
+                                                <blockquote>The final round of the Bennetts British Superbike
+                                                    Championship delivered in spectacular fashion at Brands Hatch on
+                                                    the weekend, with Tommy Bridewell narrowly missing out on the
+                                                    crown as Yamaha rider Tarran Mackenzie took the…</blockquote>
+                                            </div>
+                                        </div>
+                                    </article> -->
+                                </div>
+                            </div>
+                            <!-- <div class="post-items-wrap" data-posts="review">
+                                <div>
+                                    <article class="post-item" data-post-item="">
+                                        <div>
+                                            <a class="image"
+                                                href="review/devitt-tc-max-review-perfect-for-negotiating-the-city-centre/index.htm"><img
+                                                    loading="lazy"
+                                                    alt="Super Soco TC Max electric motorcycle in London"
+                                                    src="wp-content/uploads/2021/09/TC-Max-Boom.jpg"
+                                                    srcset="wp-content/uploads/2021/09/TC-Max-Boom-300x200.jpg 300w, wp-content/uploads/2021/09/TC-Max-Boom-1024x683.jpg 1024w, wp-content/uploads/2021/09/TC-Max-Boom-768x512.jpg 768w, wp-content/uploads/2021/09/TC-Max-Boom-1536x1024.jpg 1536w, wp-content/uploads/2021/09/TC-Max-Boom-1500x1000.jpg 1500w"
+                                                    width="2500" height="1667"></a>
+                                            <div class="text">
+                                                <h2>
+                                                    <a
+                                                        href="review/devitt-tc-max-review-perfect-for-negotiating-the-city-centre/index.htm">Devitt
+                                                        TC Max review; “perfect for negotiating the city centre”</a>
+                                                </h2>
+                                                <h3 class="date">03/09/2021</h3>
+                                                <blockquote>It’s a slick, city dwelling machine that carves through
+                                                    traffic with ease and provides an efficient and pocket-friendly
+                                                    commuting option in the long term.&#8221;</blockquote>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="post-item" data-post-item="">
+                                        <div>
+                                            <a class="image"
+                                                href="review/spicy110-cpx-electric-scooter-review/index.htm"><img
+                                                    loading="lazy"
+                                                    alt="Spicy110 reviewing the Super Soco CPx electric scooter"
+                                                    src="wp-content/uploads/2021/08/238660243_826026004612262_1860268218301450688_n.jpg"
+                                                    srcset="wp-content/uploads/2021/08/238660243_826026004612262_1860268218301450688_n-300x157.jpg 300w, wp-content/uploads/2021/08/238660243_826026004612262_1860268218301450688_n-1024x538.jpg 1024w, wp-content/uploads/2021/08/238660243_826026004612262_1860268218301450688_n-768x403.jpg 768w, wp-content/uploads/2021/08/238660243_826026004612262_1860268218301450688_n-1536x806.jpg 1536w, wp-content/uploads/2021/08/238660243_826026004612262_1860268218301450688_n-1900x997.jpg 1900w"
+                                                    width="2048" height="1075"></a>
+                                            <div class="text">
+                                                <h2>
+                                                    <a href="review/spicy110-cpx-electric-scooter-review/index.htm">Spicy110
+                                                        CPx review; “It’s actually kind of amazing!”</a>
+                                                </h2>
+                                                <h3 class="date">27/08/2021</h3>
+                                                <blockquote>We recently gave Spicy110 a Super Soco CPx for a couple
+                                                    of weeks to find out what it’s like to live with.</blockquote>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div> -->
+                            <div class="read-more-wrap">
+                                <!-- <a class="button arrow-button big-button" href="news-reviews/index.htm">Read More
+                                    News &amp; Reviews</a> -->
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                </div>
+            </div>
+        </main>
+    </div>
+    <%- include('./common/footer.ejs') %>
+
+      
