@@ -1,3 +1,5 @@
+const Order = require('../models/orders')
+
 const router = require('express').Router()
 
 
@@ -24,6 +26,32 @@ router.get('/products/:id', (req, res) => {
     })
 })
 
+
+router.get('/product/:categoryId/:productId', (req, res) => {
+    return res.render('product', {
+        categoryId: req.params.categoryId,
+        productId: req.params.productId
+    })
+})
+
+
+router.post('/order-details/:orderId', (req, res) => {
+    return res.redirect(`/order-details/${req.params.orderId}`)
+})
+
+router.get('/order-details/:orderId', async(req, res) => {
+    try {
+        const order = await Order.findOne({ orderId: req.params.orderId })
+        if(!order){
+            throw "Order Not found!"
+        }
+        return res.render('order-details', {
+            order
+        })    
+    } catch (error) {
+        return res.redirect('/')
+    }
+})
 
 router.get('/about', (req, res) => {
     return res.render('about')

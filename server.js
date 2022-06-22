@@ -42,9 +42,13 @@ mongoose.connect(process.env.DATABASE_URL,
 )
 
 const IndexRouter = require('./src/vroutes/index')
+const OrderRouter = require('./src/routes/order')
+const RazorpayRouter = require('./src/routes/payments')
 
 
 app.use('/', IndexRouter)
+app.use('/', OrderRouter)
+app.use('/', RazorpayRouter)
 
 
 app.listen(process.env.PORT, () => {

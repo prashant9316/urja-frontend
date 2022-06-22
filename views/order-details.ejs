@@ -1,0 +1,59 @@
+<%- include('./common/header.ejs') %>
+    <div id="body-wrapper">
+        <main>
+            <div class="post-content">
+                <div class="">
+                    <div class="banner-flex-wrap" style="display: flex; flex-direction: column; ">
+                        <div class="banner scroll-button-container banner-fixed-attachment banner-full-height has-heading"
+                            data-transition-duration="0.5" data-rapid-transition-duration="0.1" data-transition-wait="5"
+                            data-transition-type="fade">
+                            <div class="banner-slideshow">
+                                <div data-bgd-image="https://www.supersoco.co.uk/wp-content/uploads/2021/03/finance_insurance_banner.jpg"
+                                    class="banner-slideshow-item banner-slideshow-item-center show" id="bg-image"
+                                    style="background-image: url('/wp-content/uploads/2021/03/finance_insurance_banner-1500x1000.jpg');">
+                                    <div class="banner-overlay banner-overlay-none"></div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="banner-content banner-content-left">
+                                <div>
+                                    <div class="banner-heading">
+                                        <h1 id="mainHeading"><span style="color:rgb(57, 189, 57);">ORDER DETAILS</span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="banner-scroll-down">
+                                <div>
+                                    <div class="scroll-down-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="rich-text">
+                        <div>
+                            <div style="text-align: center;">
+                                <h3 style="text-decoration: underline 7px; text-decoration-color: rgb(57, 189, 57);">
+                                    <strong id="product-name-1">Thank you for Transaction with Urja Global</strong>
+                                </h3>
+                                <p style="font-weight: 300; font-style: bold;"><strong>Your Order is confirmed with order id: <%= order.orderId %> for product: <%= order.productDetails.name %> for ₹ <%= order.productDetails.amount %>/-* </strong></p>
+                                <!-- <p>Website &#8211; <a
+                                href="https://www.santanderconsumer.co.uk/">https://www.santanderconsumer.co.uk/</a>
+                        </p> -->
+                                <!-- <p><img src="../wp-content/uploads/2021/03/scuk-logo-300x125.png" alt="Santander"> -->
+                                <!-- </p> -->
+                        <p style="text-align: center;">
+                            More Details will be shared to you on your mail!
+                        </p> 
+                                <!-- <h2 id="tablepress-1-name" class="tablepress-table-name tablepress-table-name-id-1">
+                            Representative Purchase Plan Finance Example</h2> -->
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+<%- include('./common/footer.ejs') %>
