@@ -35,7 +35,7 @@
                         <div>
                             <div style="text-align: center;">
                                 <h3 style="text-decoration: underline 7px; text-decoration-color: rgb(57, 189, 57);">
-                                    <strong id="product-name-1">Thank you for Transaction with Urja Global</strong>
+                                    <strong id="product-name-1">Thank you <%= order.deliveryName %> for Transaction with Urja Global</strong>
                                 </h3>
                                 <p style="font-weight: 300; font-style: bold;"><strong>Your Order is confirmed with order id: <%= order.orderId %> for product: <%= order.productDetails.productName %> for ₹ <%= order.productDetails.amount %>/-* </strong></p>
                                 <!-- <p>Website &#8211; <a
