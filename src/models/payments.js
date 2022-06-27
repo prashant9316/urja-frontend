@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const Payments = new mongoose.Schema({
+    email_: {
+        type: String,
+        required: true,
+    },
     payment_id: {
         type: String
     },

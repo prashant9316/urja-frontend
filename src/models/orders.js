@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const shortid = require('shortid')
 
 const Orders = new mongoose.Schema({
+    email_: {
+        type: String,
+        required: true
+    },
     orderId: {
         type: String,
         default: shortid.generate(),
@@ -30,13 +34,19 @@ const Orders = new mongoose.Schema({
     alternativeContactNumber: {
         type: String,
     },
-    deliveryName: String,
-    productDetails: {
-        productName: String,
-        amount: String,
-        categoryId: String
-    },
-    productId: String
+    products: [{
+        productDetails: {
+            productName: String,
+            amount: String,
+            quantity: Number,
+            categoryId: String,
+            productId: String
+        },
+    }],
+    amount: {
+        type: String,
+        required: true
+    }
 })
 
 module.exports = mongoose.model("Orders", Orders)

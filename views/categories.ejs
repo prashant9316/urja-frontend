@@ -69,7 +69,7 @@
                                     const productsContainer = document.getElementById('parentDiv');
                                     res.data.forEach(product => {
                                         productsContainer.innerHTML += `
-                                        <article class="post-item" data-post-item="">
+                                        <article class="post-item shadow-card" data-post-item="">
                                             <div>
                                                 <a class="image" href="/product/${categoryId}/${product.id}"><img
                                                         loading="lazy" alt="${product.name}"
@@ -107,7 +107,7 @@
                                 </div>
                             </div> -->
                             <div class="post-items-wrap show" data-posts="post">
-                                <div id="parentDiv">
+                                <div id="parentDiv" class="row">
 <!--                                     
                                     <article class="post-item" data-post-item="">
                                         <div>
