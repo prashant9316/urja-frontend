@@ -53,7 +53,6 @@
                     <script>
                         const categoryId = '<%= categoryId %>';
                         const productId = '<%= productId %>';
-                        // console.log(categoryId);
                         let categoryName = ''
                         let productDetails = undefined;
 
@@ -61,7 +60,6 @@
                             await fetch(`http://13.58.168.111:5544/api/<%= categoryId %>/product`)
                                 .then(res => res.json())
                                 .then(res => {
-                                    // console.log(res)
                                     if (res.data.length > 0) {
                                         categoryName = res.data[0].categoryName;
                                         res.data.forEach(elem => {
@@ -100,7 +98,7 @@
                     <section class="soco-bike-post-single-summary">
                         <div>
                             <div class="price">
-                                <h3>Price</h3>
+                                <h3 style="color: white;">Price</h3>
                                 <div class="price-main"><span class="price-price" id="product-price">₹ loading...</span>
                                     
                                     <!-- <span class="price-option">(Alloy Wheel)</span>, <span class="price-price">£4,499</span>
@@ -131,14 +129,13 @@
                 </div> -->
                             <div class="smallprint">*Prices are inclusive of Tax, exclusive of
                                 registration<br>
-                                <!-- **Based on 75kg rider in controlled conditions -->
                             </div>
                         </div>
                     </section>
                     <section class="soco-bike-post-single-main">
                         <div>
                             <div class="text">
-                                <h2 id="product-name">Loading...</h2>
+                                <h2 id="product-name" style="color: white;">Loading...</h2>
                                 <div class="content" id="product-description">loading the description...
                                 </div>
                                 <button id="add-to-cart-2" class="order-btn">Add To Cart</button> 
@@ -147,31 +144,12 @@
                                         <th>Colours</th>
                                         <td></td>
                                     </tr>
-                                    <!-- <tr>
-                                        <th>Pre OZEV Grant Price</th>
-                                        <td><span class="price-price">£4,899</span> <span class="price-option">(Alloy
-                                                Wheel)</span>, <span class="price-price">£4,999</span> <span
-                                                class="price-option">(Spoked Wheel)</span></td>
-                                    </tr> -->
+
                                     <tr>
                                         <th>Price</th>
                                         <td><span class="price-price" id="product-price-1">loading...</span>*</td>
                                         
                                     </tr>
-                                    <tr>
-                                    </tr>
-                                    <!-- <tr>
-                                        <th>Estimated Range</th>
-                                        <td>60 Miles / 95km**</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Warranty</th>
-                                        <td>2 Years Vehicle, 3 Years Battery &amp; Motor</td>
-                                    </tr>
-                                    <tr>
-                                        <th>License</th>
-                                        <td>A1 - CBT from 17 years old (125cc equivalent)</td>
-                                    </tr> -->
                                 </table>
                             </div>
                             <div class="image"><img alt="Product Image"
@@ -197,42 +175,6 @@
                                     </div>
                                     <button id="add-to-cart-3" class="order-btn">Add To Cart</button> 
 
-                                    <!-- <div id="order-form">
-                                        <form style="width: 70%;">
-                                            <div class="form-input">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" class="form" id="name">
-                                            </div>
-                                            <div class="form-input">
-                                                <label for="name" class="form-label">Contact Number</label>
-                                                <input type="text" class="" id="number">
-                                            </div>
-                                            <div class="form-input">
-                                                <label for="name" class="form-label">Email Id</label>
-                                                <input type="email" class="" id="email">
-                                            </div>
-                                            <div class="form-input">
-                                                <label for="name" class="form-label">Delivery Address</label>
-                                                <input type="text" class="" id="address">
-                                            </div>
-                                            <div class="form-input">
-                                                <label for="name" class="form-label">Pin Code</label>
-                                                <input type="text" class="" id="pincode">
-                                            </div>
-                                            <input type="submit" id="order-btn" value="order">
-                                            
-                                        </form>
-                                    </div>
-                                    <button id="rzp-button1" class="order-btn">Pay</button>  -->
-                                    <!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
-                                    <!-- <div class="">
-                                        <div class="button arrow-button" id="order-now">Order Now</div>
-                                    </div>
-
-                                    <div class="read-more-wrap">
-                                        <div class="button arrow-button read-more-button" data-toggle=""
-                                            data-open-text="Read Less">Read Details</div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -274,72 +216,7 @@
                 </script>
             </div>
         </main>
-        <script>
-            let form = document.getElementById('order-form')
-            let paymentBtn = document.getElementById('rzp-button1')
-            paymentBtn.style.display = 'none'
-            document.getElementById('order-btn').addEventListener('click', async(e) => {
-                e.preventDefault()
-                const name = document.getElementById('name').value;
-                const contactNumber = document.getElementById('number').value;
-                const address = document.getElementById('address').value;
-                const email = document.getElementById('email').value;
-                const pincode = document.getElementById('pincode').value;
 
-                const res = await fetch('/create-order/<%= categoryId %>/<%= productId %>', {
-                    method: "POST",
-                    body: JSON.stringify({
-                        name,
-                        contactNumber,
-                        address,
-                        email,
-                        pincode,
-                        productDetails
-                    }),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                .then(res => res.json())
-                
-                if(res.code == 200){
-                    console.log(res)
-                    alert("Order Created! Now Pay to Confirm the Order!")
-                    
-                    const amount = res.order.amount * 100;
-                    console.log("Amount: " + amount);
-                    console.log("Order ID: " + res.order.order_id);
-                    console.log("currency: " + 'INR');
-                    var options = {
-                        "key": 'rzp_test_olMLT24C033aCn', 
-                        "amount": amount,
-                        "currency": 'INR',
-                        "name": "Urja Global",
-                        "description": "Payment for Product",
-                        "image": "",
-                        "order_id": res.order.order_id,
-                        "callback_url": `/order-details/${res.order.orderId}`,
-                        "prefill": {
-                            "name": res.order.name,
-                            "email": res.order.email,
-                            "contact": res.order.contactNumber,
-                        }
-                    }
-                    const rzp1 = new Razorpay(options);
-                    paymentBtn.style.display = 'block'
-                    document.getElementById('order-btn').style.display = 'none'
-                    form.style.display = 'none'
-
-                    document.getElementById('rzp-button1').onclick = function (e) {
-                        console.log("button pressed")
-                        rzp1.open();
-                        e.preventDefault();
-                    }
-                }
-            })
-
-           
-        </script>
     </div>
     <style>
         input {

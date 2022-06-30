@@ -3,7 +3,9 @@ const Razorpay = require('razorpay')
 const shortid = require('shortid')
 
 const Order = require('./../models/orders')
-const Payments = require('./../models/payments')
+const Cart = require('./../models/cart')
+const Payments = require('./../models/payments');
+const { ensureAuth } = require('../middlewares/auth');
 
 
 const razorpay = new Razorpay({
@@ -12,12 +14,26 @@ const razorpay = new Razorpay({
 })
 
 
-router.post('/create-order/:categoryId/:productId', async(req, res) => {
+router.post('/create-order/', ensureAuth, async(req, res) => {
     try {
-        console.log(req.params)
-        console.log(req.body)
-
-        const amount = req.body.productDetails.price;
+        const items = await Cart.find({ email_: req.user.email })
+        let products = []
+        let orderTotal = 0
+        for(let i = 0; i < items.length; i++){
+            let productDetails = {
+                name: items[i].productDetails.name,
+                price: items[i].productDetails.price,
+                categoryId: items[i].productDetails.categoryId,
+                image: items[i].productDetails.image,
+                id: items[i].productDetails.id,
+                quantity: items[i].quantity,
+                finalPrice: items[i].finalPrice
+            };
+            orderTotal += items[i].finalPrice;
+            products.push(productDetails);
+        }
+        console.log(products)
+        const amount = orderTotal;
         const currency = 'INR';
 
         const options = {
@@ -33,17 +49,14 @@ router.post('/create-order/:categoryId/:productId', async(req, res) => {
             order_id: response.id,
             contactNumber: req.body.number,
             pinCode: req.body.pincode,
-            email: req.body.email,
-            productId: req.body.productDetails.id,
-            productDetails: {
-                productName: req.body.productDetails.name,
-                amount: req.body.productDetails.price,
-                categoryId: req.body.productDetails.categoryId
-            }
+            email_: req.user.email,
+            products,
+            amount
         })
         await newOrder.save()
 
         const newPayment = new Payments({
+            email_: req.user.email,
             payment_id: shortid.generate(),
             order_id: response.id,
             receipt_id: response.receipt,
@@ -51,11 +64,14 @@ router.post('/create-order/:categoryId/:productId', async(req, res) => {
             orderId: newOrder.orderId,
         })
         await newPayment.save()
+        await Cart.deleteMany({email_: req.user.email })
+
         return res.json({
             code: 200,
             status: 200,
             message: "Order Created! Ready for Payment",
-            order: newOrder
+            order: newOrder,
+            payment: newPayment
         })
     } catch (error) {
         console.log(error)

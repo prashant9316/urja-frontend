@@ -80,10 +80,23 @@ router.get('/my-orders', ensureAuth, async(req, res) => {
 })
 
 
-router.post('/order-details/:orderId', (req, res) => {
-    return res.redirect(`/order-details/${req.params.orderId}`, {
+router.post('/orders', (req, res) => {
+    return res.redirect(`/orders`, {
         user: req.user
     })
+})
+
+router.get('/orders', ensureAuth, async(req, res) => {
+    try {
+        const orders = await Order.find({ email_: req.user.email })
+        console.log(orders)
+        return res.render('my-order', {
+            user: req.user,
+            orders
+        })
+    } catch (error) {
+        return res.redirect('/')
+    }
 })
 
 router.get('/order-details/:orderId', async(req, res) => {

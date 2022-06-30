@@ -6,6 +6,9 @@ const Orders = new mongoose.Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String
+    },
     orderId: {
         type: String,
         default: shortid.generate(),
@@ -35,13 +38,13 @@ const Orders = new mongoose.Schema({
         type: String,
     },
     products: [{
-        productDetails: {
-            productName: String,
-            amount: String,
-            quantity: Number,
-            categoryId: String,
-            productId: String
-        },
+        name: String,
+        price: String,
+        quantity: Number,
+        categoryId: String,
+        id: String,
+        image: String,
+        finalPrice: Number
     }],
     amount: {
         type: String,

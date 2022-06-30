@@ -1,0 +1,144 @@
+<%- include('./common/header.ejs') %>
+    <div id="body-wrapper">
+        <main>
+            <div class="post-content">
+                <div class="">
+                    <div class="banner-flex-wrap" style="display: flex; flex-direction: column; ">
+                        <div class="banner scroll-button-container banner-fixed-attachment banner-full-height has-heading"
+                            data-transition-duration="0.5" data-rapid-transition-duration="0.1" data-transition-wait="5"
+                            data-transition-type="fade">
+                            <div class="banner-slideshow">
+                                <div data-bgd-image="https://www.supersoco.co.uk/wp-content/uploads/2021/03/finance_insurance_banner.jpg"
+                                    class="banner-slideshow-item banner-slideshow-item-center show" id="bg-image"
+                                    style="background-image: url('/wp-content/uploads/2021/03/finance_insurance_banner-1500x1000.jpg');">
+                                    <div class="banner-overlay banner-overlay-none"></div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="banner-content banner-content-left">
+                                <div>
+                                    <div class="banner-heading">
+                                        <h1 id="mainHeading"><span style="color:rgb(57, 189, 57);">Orders</span></h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="banner-scroll-down">
+                                <div>
+                                    <div class="scroll-down-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <section class="rich-text">
+                        <div>
+                            <div style="text-align: center;">
+                                <h3 style="text-decoration: underline 7px; text-decoration-color: rgb(57, 189, 57);">
+                                    <strong id="product-name-1">Orders</strong>
+                                </h3>
+                                <!-- <p>Website &#8211; <a
+                            href="https://www.santanderconsumer.co.uk/">https://www.santanderconsumer.co.uk/</a>
+                    </p> -->
+                                <!-- <p><img src="../wp-content/uploads/2021/03/scuk-logo-300x125.png" alt="Santander"> -->
+                                <!-- </p> -->
+                                <!-- <p style="text-align: center;">
+                        More Details will be shared to you on your mail!
+                    </p>  -->
+                                <!-- <h2 id="tablepress-1-name" class="tablepress-table-name tablepress-table-name-id-1">
+                        Representative Purchase Plan Finance Example</h2> -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <script>
+                    window.onload = async () => {
+                            
+                            
+                        }
+                    </script>
+
+                    <div class="spacer-block dk-grey" data-spacer-heights="30:30:60" style="height: 30px; "></div>
+                    <section class="soco-numbered-rows">
+                        <div>
+                            <ol>
+                                <% var total=0; totalPrice=0; %>
+                                    <% for(var i=0; i < orders.length; i++) { %>
+                                        <li>
+                                            <ol>
+                                                <li class="order-item">
+                                                    <div>
+                                                        <div class="num" id="finalPrice" ><%=  orders[i].createdAt.toLocaleDateString() %></div>
+    
+                                                        <div class="text" style="float: right;">
+                                                            <h3><span style="color: rgb(57, 189, 57);">Order Id</span>/ <%= orders[i].createdAt.toLocaleTimeString() %> / <span style="color: rgb(57, 189, 57);">₹<%= orders[i].amount %>/-</span>  </h3>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <% for(var j = 0; j < orders[i].products.length; j++) { %>
+                                                    <li>
+                                                        <div>
+                                                            <div class="num" id="item-q-<%= orders[i]._id %>">0<%= orders[i].products[j].quantity %>
+                                                            </div>
+                                                            <div class="image" style="padding-right: 5px; margin-right: 10px;">
+                                                                <img style="width: 100px;"
+                                                                    src="<%= orders[i].products[j].image %>" alt="">
+                                                            </div>
+                                                            <div class="text">
+                                                                <h3>
+                                                                    <%= orders[i].products[j].name %>
+                                                                </h3>
+                                                                <div class="body">
+                                                                    <p><span style="font-weight: 400; color: white;">₹<%=
+                                                                                orders[i].products[j].price %>/- per item</span></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text" style="padding-left: 20px;">
+                                                                <!-- <h3> -->
+            
+                                                                <!-- <a href="#"
+                                                                    style="background-color: #0693e3" class="grb-btn"><%= orders[i].products[j].quantity %> </a> -->
+                                                                <!-- </h3> -->
+            
+                                                                
+            
+                                                            </div>
+                                                            <div class="text" style="float: right;">
+                                                                <h3 id="final-price-<%= orders[i]._id %>">₹<%= orders[i].products[j].finalPrice %>
+                                                                        /-</h3>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                <% } %>
+                                            </ol>
+                                        </li>
+
+                                        
+                                        <% } %>
+
+                            </ol>
+
+                            
+                            
+                            <!-- <div class="">
+                                <input type="submit" id="order-btn" value="Complete Order Details">
+                            </div> -->
+                        </div>
+                    </section>
+
+
+
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <style>
+       .order-item{
+        border-style: solid;
+        border-color: rgb(57, 189, 57);
+        border-radius: 0;
+       }
+    </style>
+    <%- include('./common/footer.ejs') %>

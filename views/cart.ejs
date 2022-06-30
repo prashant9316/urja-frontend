@@ -1,206 +1,369 @@
 <%- include('./common/header.ejs') %>
-<div id="body-wrapper">
-    <main>
-        <div class="post-content">
-            <div class="">
-                <div class="banner-flex-wrap" style="display: flex; flex-direction: column; ">
-                    <div class="banner scroll-button-container banner-fixed-attachment banner-full-height has-heading"
-                        data-transition-duration="0.5" data-rapid-transition-duration="0.1" data-transition-wait="5"
-                        data-transition-type="fade">
-                        <div class="banner-slideshow">
-                            <div data-bgd-image="https://www.supersoco.co.uk/wp-content/uploads/2021/03/finance_insurance_banner.jpg"
-                                class="banner-slideshow-item banner-slideshow-item-center show" id="bg-image"
-                                style="background-image: url('/wp-content/uploads/2021/03/finance_insurance_banner-1500x1000.jpg');">
-                                <div class="banner-overlay banner-overlay-none"></div>
+    <div id="body-wrapper">
+        <main>
+            <div class="post-content">
+                <div class="">
+                    <div class="banner-flex-wrap" style="display: flex; flex-direction: column; ">
+                        <div class="banner scroll-button-container banner-fixed-attachment banner-full-height has-heading"
+                            data-transition-duration="0.5" data-rapid-transition-duration="0.1" data-transition-wait="5"
+                            data-transition-type="fade">
+                            <div class="banner-slideshow">
+                                <div data-bgd-image="https://www.supersoco.co.uk/wp-content/uploads/2021/03/finance_insurance_banner.jpg"
+                                    class="banner-slideshow-item banner-slideshow-item-center show" id="bg-image"
+                                    style="background-image: url('/wp-content/uploads/2021/03/finance_insurance_banner-1500x1000.jpg');">
+                                    <div class="banner-overlay banner-overlay-none"></div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="banner-content banner-content-left">
                                 <div>
+                                    <div class="banner-heading">
+                                        <h1 id="mainHeading"><span style="color:rgb(57, 189, 57);">Cart</span></h1>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="banner-content banner-content-left">
-                            <div>
-                                <div class="banner-heading">
-                                    <h1 id="mainHeading"><span style="color:rgb(57, 189, 57);">Cart</span></h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="banner-scroll-down">
-                            <div>
-                                <div class="scroll-down-button">
+                            <div class="banner-scroll-down">
+                                <div>
+                                    <div class="scroll-down-button">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <section class="rich-text">
-                    <div>
-                        <div style="text-align: center;">
-                            <h3 style="text-decoration: underline 7px; text-decoration-color: rgb(57, 189, 57);">
-                                <strong id="product-name-1">Cart</strong>
-                            </h3>
-                            <!-- <p>Website &#8211; <a
+                    <section class="rich-text">
+                        <div>
+                            <div style="text-align: center;">
+                                <h3 style="text-decoration: underline 7px; text-decoration-color: rgb(57, 189, 57);">
+                                    <strong id="product-name-1">Cart</strong>
+                                </h3>
+                                <!-- <p>Website &#8211; <a
                             href="https://www.santanderconsumer.co.uk/">https://www.santanderconsumer.co.uk/</a>
                     </p> -->
-                            <!-- <p><img src="../wp-content/uploads/2021/03/scuk-logo-300x125.png" alt="Santander"> -->
-                            <!-- </p> -->
-                    <!-- <p style="text-align: center;">
+                                <!-- <p><img src="../wp-content/uploads/2021/03/scuk-logo-300x125.png" alt="Santander"> -->
+                                <!-- </p> -->
+                                <!-- <p style="text-align: center;">
                         More Details will be shared to you on your mail!
                     </p>  -->
-                            <!-- <h2 id="tablepress-1-name" class="tablepress-table-name tablepress-table-name-id-1">
+                                <!-- <h2 id="tablepress-1-name" class="tablepress-table-name tablepress-table-name-id-1">
                         Representative Purchase Plan Finance Example</h2> -->
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <script>
-                    window.onload = async() => {
-                        const items = JSON.parse('<%- JSON.stringify(items) %>')
-                        console.log(items)
-                        let totalPrice = 0;
-                        for(var i = 0; i < items.length; i++){
-                            totalPrice += items[0].finalPrice;
-                        }
-                        console.log(totalPrice)
-                        document.getElementById('finalPrice').innerHTML = `₹${totalPrice}/-`
-                    }
-                </script>
+                    <script>
+                        const fomr = document.getElementById('order-form')
 
-                <div class="spacer-block dk-grey" data-spacer-heights="30:30:60" style="height: 30px; "></div>
-                <section class="soco-numbered-rows">
-                    <div>
-                        <ol>
-                            <% var total=0; totalPrice = 0; %>
-                            <% for(var i = 0; i < items.length; i++) { %>
-                            <li>
-                                <div>
-                                    <div class="num" id="item-q-<%= items[i]._id %>">0<%= items[i].quantity %></div>
-                                    <div class="image" style="padding-right: 5px; margin-right: 10px;">
-                                        <img style="width: 100px;" src="<%= items[i].productDetails.image %>" alt="">
-                                    </div>
-                                    <div class="text">
-                                        <h3><%= items[i].productDetails.name %></h3>
-                                        <div class="body">
-                                            <h4><span style="font-weight: 400; color: white;">₹<%= items[i].productDetails.price %>/-</span></h4>
-                                        </div>
-                                    </div>
-                                    <div class="text" style="padding-left: 20px;">
-                                        <!-- <h3> -->
-
-                                                <a id="delete-<%= items[i]._id %>" href="#" style="background-color: #0693e3" class="grb-btn"><i class="fa fa-trash"></i></a>
-                                        <!-- </h3> -->
-                                        
-                                        <div class="" style="margin: 5px; color: black; ">
-                                            <select class="grb-btn" style="background-color: grey" id="count-<%= items[i]._id %>" name="count" >
-                                                <option default >Select Quntity</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="text" style="float: right;">
-                                        <h3 id="final-price-<%= items[i]._id %>">₹<%= items[i].finalPrice %>/-</h3>
-                                    </div>
-                                </div>
-                            </li>
+                        window.onload = async () => {
                             
-                            <script>
-                                
-                                document.getElementById('delete-<%= items[i]._id %>').addEventListener('click', async(e) => {
-                                    e.preventDefault();
-                                    alert("removing Item!")
-                                    await fetch('/cart/remove-item/<%= items[i]._id %>', {
-                                        method: "POST", 
-                                    })
-                                    .then(res => res.json())
-                                    .then(res => {
-                                        if(res.code = 200){
-                                            window.location.href = '/cart';
-                                        }
-                                    })
-                                    .catch(err=>{
-                                        alert("Some Error Occurred")
-                                    })
-                                })
-                                document.getElementById('count-<%= items[i]._id %>').addEventListener('change', async(e) => {
-                                    // e.preventDefault()
-                                    const selectedValue = document.getElementById('count-<%= items[i]._id %>').value;
-                                    await fetch('/cart/update-item/<%= items[i]._id %>', {
-                                        method: "POST",
-                                        body: JSON.stringify({
-                                            quantity: selectedValue,
-                                        }),
-                                        headers: {
-                                            "Content-Type": "application/json"
-                                        }
-                                    })
-                                    .then(res => res.json())
-                                    .then(res => {
-                                        if(res.code == 200){
-                                            document.getElementById('item-q-<%= items[i]._id %>').innerHTML = '0'+ selectedValue;
-                                            document.getElementById('final-price-<%= items[i]._id %>').innerHTML = '₹' + res.finalPrice + '/-';
-                                        }
-                                    })
-                                })
-                                
-                            </script>
-                            <% } %>
+                            const items = JSON.parse('<%- JSON.stringify(items) %>')
+                            if(items.length == 0){
+                                form.style.display = 'none'
+                            }
+                            console.log(items)
+                            let totalPrice = 0;
+                            for (var i = 0; i < items.length; i++) {
+                                totalPrice += items[i].finalPrice;
+                            }
+                            console.log(totalPrice)
+                            document.getElementById('finalPrice').innerHTML = `₹${totalPrice}/-`
+                        }
+                    </script>
 
-                            <li>
-                                <div>
-                                    <div class="num" id="finalPrice">₹loading/-</div>
-                                    
-                                    <div class="text" style="float: right;">
-                                        <h3>Total Amount!</h3>
+                    <div class="spacer-block dk-grey" data-spacer-heights="30:30:60" style="height: 30px; "></div>
+                    <section class="soco-numbered-rows">
+                        <div>
+                            <ol>
+                                <% var total=0; totalPrice=0; %>
+                                    <% for(var i=0; i < items.length; i++) { %>
+                                        <li>
+                                            <div>
+                                                <div class="num" id="item-q-<%= items[i]._id %>">0<%= items[i].quantity
+                                                        %>
+                                                </div>
+                                                <div class="image" style="padding-right: 5px; margin-right: 10px;">
+                                                    <img style="width: 100px;"
+                                                        src="<%= items[i].productDetails.image %>" alt="">
+                                                </div>
+                                                <div class="text">
+                                                    <h3>
+                                                        <%= items[i].productDetails.name %>
+                                                    </h3>
+                                                    <div class="body">
+                                                        <h4><span style="font-weight: 400; color: white;">₹<%=
+                                                                    items[i].productDetails.price %>/-</span></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="text" style="padding-left: 20px;">
+                                                    <!-- <h3> -->
+
+                                                    <a id="delete-<%= items[i]._id %>" href="#"
+                                                        style="background-color: #0693e3" class="grb-btn"><i
+                                                            class="fa fa-trash"></i></a>
+                                                    <!-- </h3> -->
+
+                                                    <div class="" style="margin: 5px; color: black; ">
+                                                        <select class="grb-btn" style="background-color: grey"
+                                                            id="count-<%= items[i]._id %>" name="count">
+                                                            <option default>Select Quntity</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="text" style="float: right;">
+                                                    <h3 id="final-price-<%= items[i]._id %>">₹<%= items[i].finalPrice %>
+                                                            /-</h3>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <script>
+
+                                            document.getElementById('delete-<%= items[i]._id %>').addEventListener('click', async (e) => {
+                                                e.preventDefault();
+                                                alert("removing Item!")
+                                                await fetch('/cart/remove-item/<%= items[i]._id %>', {
+                                                    method: "POST",
+                                                })
+                                                    .then(res => res.json())
+                                                    .then(res => {
+                                                        if (res.code = 200) {
+                                                            window.location.href = '/cart';
+                                                        }
+                                                    })
+                                                    .catch(err => {
+                                                        alert("Some Error Occurred")
+                                                    })
+                                            })
+                                            document.getElementById('count-<%= items[i]._id %>').addEventListener('change', async (e) => {
+                                                // e.preventDefault()
+                                                const selectedValue = document.getElementById('count-<%= items[i]._id %>').value;
+                                                await fetch('/cart/update-item/<%= items[i]._id %>', {
+                                                    method: "POST",
+                                                    body: JSON.stringify({
+                                                        quantity: selectedValue,
+                                                    }),
+                                                    headers: {
+                                                        "Content-Type": "application/json"
+                                                    }
+                                                })
+                                                    .then(res => res.json())
+                                                    .then(res => {
+                                                        if (res.code == 200) {
+                                                            document.getElementById('item-q-<%= items[i]._id %>').innerHTML = '0' + selectedValue;
+                                                            document.getElementById('final-price-<%= items[i]._id %>').innerHTML = '₹' + res.finalPrice + '/-';
+                                                        }
+                                                    })
+                                            })
+
+                                        </script>
+                                        <% } %>
+
+                                            <li>
+                                                <div>
+                                                    <div class="num" id="finalPrice">₹loading/-</div>
+
+                                                    <div class="text" style="float: right;">
+                                                        <h3>Total Amount!</h3>
+                                                    </div>
+                                                </div>
+                                            </li>
+                            </ol>
+
+                            
+                            <ol>
+                                <li>
+                                    <div id="order-form">
+                                        <form style="width: 70%; color: white;">
+                                            <h2 style="color: white;">Enter Billing Details</h2>
+                                            <div class="form-input">
+                                                <label for="name" class="form-label">Name</label>
+                                                <input type="text" class="form" id="name">
+                                            </div>
+                                            <div class="form-input">
+                                                <label for="name" class="form-label">Contact Number</label>
+                                                <input type="text" class="" id="number">
+                                            </div>
+                                            <div class="form-input">
+                                                <label for="name" class="form-label">Email Id</label>
+                                                <input type="email" class="" id="email">
+                                            </div>
+                                            <div class="form-input">
+                                                <label for="name" class="form-label">Delivery Address</label>
+                                                <input type="text" class="" id="address">
+                                            </div>
+                                            <div class="form-input">
+                                                <label for="name" class="form-label">Pin Code</label>
+                                                <input type="text" class="" id="pincode">
+                                            </div>
+                                            <input type="submit" id="order-btn" value="order">
+
+                                        </form>
                                     </div>
-                                </div>
-                            </li>
-                        </ol>
-                        
-                        <div class="">
-                            <input type="submit" id="order-btn" value="order">
+                                    <button id="rzp-button1" class="order-btn">Pay</button>
+                                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                                </li>
+                            </ol>
+                            
+                            <!-- <div class="">
+                                <input type="submit" id="order-btn" value="Complete Order Details">
+                            </div> -->
                         </div>
-                    </div>
-                </section>
-                
-                
+                    </section>
 
+
+
+                    <script>
+                        let form = document.getElementById('order-form')
+                        let paymentBtn = document.getElementById('rzp-button1')
+                        paymentBtn.style.display = 'none'
+                        
+                        document.getElementById('order-btn').addEventListener('click', async (e) => {
+                            e.preventDefault()
+                            const name = document.getElementById('name').value;
+                            const contactNumber = document.getElementById('number').value;
+                            const address = document.getElementById('address').value;
+                            const email = document.getElementById('email').value;
+                            const pincode = document.getElementById('pincode').value;
+
+                            const res = await fetch('/create-order', {
+                                method: "POST",
+                                body: JSON.stringify({
+                                    name,
+                                    contactNumber,
+                                    address,
+                                    email,
+                                    pincode
+                                }),
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            })
+                                .then(res => res.json())
+
+                            if (res.code == 200) {
+                                console.log(res)
+                                alert("Order Created! Now Pay to Confirm the Order!")
+
+                                const amount = res.order.amount * 100;
+                                console.log("Amount: " + amount);
+                                console.log("Order ID: " + res.order.order_id);
+                                console.log("currency: " + 'INR');
+                                var options = {
+                                    "key": 'rzp_test_olMLT24C033aCn',
+                                    "amount": amount,
+                                    "currency": 'INR',
+                                    "name": "Urja Global",
+                                    "description": "Payment for Product",
+                                    "image": "",
+                                    "order_id": res.order.order_id,
+                                    "callback_url": `/order`,
+                                    "prefill": {
+                                        "name": res.order.name,
+                                        "email": res.order.email,
+                                        "contact": res.order.contactNumber,
+                                    }
+                                }
+                                const rzp1 = new Razorpay(options);
+                                paymentBtn.style.display = 'block'
+                                document.getElementById('order-btn').style.display = 'none'
+                                form.style.display = 'none'
+
+                                document.getElementById('rzp-button1').onclick = function (e) {
+                                    console.log("button pressed")
+                                    rzp1.open();
+                                    e.preventDefault();
+                                }
+                            }
+                        })
+
+
+                    </script>
+
+                </div>
             </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
 
-<style>
-    .order-btn{
-    background-color: rgb(84, 105, 212);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
-                rgb(84, 105, 212) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+    <style>
+        input {
+
+            font-size: 16px;
+            line-height: 28px;
+            padding: 8px 16px;
+            width: 100%;
+            min-height: 44px;
+            border: unset;
+            border-radius: 4px;
+            outline-color: rgb(84 105 212 / 0.5);
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+        }
+
+        .form-label {
+            font-size: 20px;
+            font-weight: 400;
+            padding-bottom: 2px;
+            display: flex;
+            color: white;
+            align-items: center;
+            margin: 0;
+        }
+
+        .form-input {
+            /* margin: 5px; */
+            padding-bottom: 10px;
+        }
+
+
+        .order-btn {
+            background-color: rgb(84, 105, 212);
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0.12) 0px 1px 1px 0px,
+                rgb(84, 105, 212) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
                 rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 5px;
-}
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        
+        .order-btn:hover {
+            background-color: rgb(101, 120, 210);
+        }
 
 
-input[type="submit"] {
-    background-color: rgb(84, 105, 212);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
-                rgb(84, 105, 212) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+        input[type="submit"] {
+            background-color: rgb(84, 105, 212);
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0.12) 0px 1px 1px 0px,
+                rgb(84, 105, 212) 0px 0px 0px 1px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
                 rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-}
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-</style>
-<%- include('./common/footer.ejs') %>
+        input[type="submit"]:hover{
+            background-color: rgb(84, 105, 212);
+        }
+
+    </style>
+    <%- include('./common/footer.ejs') %>
