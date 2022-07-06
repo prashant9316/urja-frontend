@@ -71,7 +71,7 @@ const User = require('./src/models/user')
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:5000/auth/google/callback'
+    callbackURL: 'https://net-se.in/auth/google/callback'
 }, async (accessToken, refreshToken, profile, done) => {
     const newUser = {
         googleId: profile.id,
