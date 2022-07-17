@@ -2303,7 +2303,7 @@ select {
     opacity: .8
 }
 
-.sticky .menu-cta-3 .cta__content span {
+.sticky .menu-cta-3 . span {
     color: #040021
 }
 
@@ -7233,7 +7233,7 @@ only screen and (min-width:576px) and (max-width:767px),
 @media only screen and (min-width:992px) and (max-width:1200px) {
     .member-name {
         padding: 26px 14px 20px;
-        width: 200px
+        width: 200px;
     }
 }
 
