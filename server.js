@@ -72,7 +72,9 @@ passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
     // callbackURL: 'https://net-se.in/auth/google/callback'
-    callbackURL: 'http://localhost:5000/auth/google/callback'
+    // callbackURL: 'http://localhost:5000/auth/google/callback'
+    callbackURL: process.env.GOOGLE_AUTH_REDIRECT
+
 }, async (accessToken, refreshToken, profile, done) => {
     const newUser = {
         googleId: profile.id,
