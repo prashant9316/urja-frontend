@@ -194,11 +194,9 @@
                                         <li><a href="/electric-vehicles">Electric Vehicles</a></li>
                                         <li><a href="/projects">Projects</a></li>
                                         <li><a href="/contact">Contact Us</a></li>
-                                        <li class="menu-item-has-children"><a href="<% if(user==null) { %>/login<% } else { %>#<% } %>" id="user-button"><i class="fa fa-user"></i> User</a>
+                                        <% if(user!=null) { %>
+                                        <li class="menu-item-has-children"><a href="#" id="user-button"><i class="fa fa-user"></i> User</a>
                                             <ul class="sub-menu">
-                                                <% if(user==null) { %>
-                                                <li><a href="/login" id="login-dropdown">Login</a></li>
-                                                <% } else { %>
                                                 <li><a href="/cart" id="cart-dropdown">Cart</a></li>
                                                 <li><a href="/orders" id="orders-dropdown">Orders</a></li>
                                                 <li><a href="/logout" id="logout">Logout</a></li>
@@ -209,18 +207,14 @@
                                 </nav>
                             </div>
                             <% if(user==null) { %>
-                                <!-- <div class="header__btn d-none d-xl-inline-block">
+                                <div class="header__btn d-none d-xl-inline-block">
                                     <a href="/login" style="background-color: #0693e3" class="grb-btn"><i
                                             class="fa fa-user"></i></a>
-                                </div> -->
+                                </div>
                             <% } else { %>
                                 <div class="header__search">
                                     <a class="search-btn nav-search " href="/cart">
-                                        <% if(user==null) { %>
-                                            <i class="fa fa-user"></i>
-                                        <% } else { %>
-                                            <i class="fa fa-shopping-cart"></i>
-                                        <% } %>
+                                        <i class="fa fa-shopping-cart"></i>
                                         
                                     </a>
                                     <!-- <a class="side-toggle d-lg-none" href="javascript:void(0)"><i
