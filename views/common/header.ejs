@@ -145,6 +145,25 @@
                                 <img src="/assets/img/shape/menu-bg-1.png" alt="">
                             </div>
                             <div class="main-menu main-menu-1">
+                                <style>
+                                    #mobile-menu>ul>li{
+                                        margin-left: 10px;
+                                    }
+                                    #user-button{
+                                        color: red;
+                                        padding: 2px;
+                                        border: solid 1 red;
+                                        border-radius: 10px;
+                                    }
+                                    #user-button:hover{
+                                        color: rgb(255, 95, 95);
+                                    }
+                                    @media only screen and (min-width:900px) and (max-width:1190px) {
+                                        #mobile-menu>ul>li {
+                                            margin-left: 0
+                                        }
+                                    }
+                                </style>
                                 <nav id="mobile-menu">
                                     <ul>
                                         <!-- <li><a href="/">Home</a></li> -->
@@ -175,7 +194,7 @@
                                         <li><a href="/electric-vehicles">Electric Vehicles</a></li>
                                         <li><a href="/projects">Projects</a></li>
                                         <li><a href="/contact">Contact Us</a></li>
-                                        <li class="menu-item-has-children"><a href="#">User</a>
+                                        <li class="menu-item-has-children"><a href="<% if(user==null) { %>/login<% } else { %>#<% } %>" id="user-button"><i class="fa fa-user"></i> User</a>
                                             <ul class="sub-menu">
                                                 <% if(user==null) { %>
                                                 <li><a href="/login" id="login-dropdown">Login</a></li>
@@ -190,14 +209,20 @@
                                 </nav>
                             </div>
                             <% if(user==null) { %>
-                                <div class="header__btn d-none d-xl-inline-block">
+                                <!-- <div class="header__btn d-none d-xl-inline-block">
                                     <a href="/login" style="background-color: #0693e3" class="grb-btn"><i
                                             class="fa fa-user"></i></a>
-                                </div>
+                                </div> -->
                             <% } else { %>
                                 <div class="header__search">
                                     <a class="search-btn nav-search " href="/cart">
-                                        <i class="fa fa-user"></i></a>
+                                        <% if(user==null) { %>
+                                            <i class="fa fa-user"></i>
+                                        <% } else { %>
+                                            <i class="fa fa-shopping-cart"></i>
+                                        <% } %>
+                                        
+                                    </a>
                                     <!-- <a class="side-toggle d-lg-none" href="javascript:void(0)"><i
                                             class="fal fa-bars"></i></a> -->
                                 </div>

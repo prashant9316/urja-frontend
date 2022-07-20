@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/2', (req, res) => {
-    return res.render('index-2')
-})
+// router.get('/2', (req, res) => {
+//     return res.render('index-2')
+// })
 
 
 
@@ -80,7 +80,7 @@ router.get('/my-orders', ensureAuth, async(req, res) => {
 })
 
 
-router.post('/orders', (req, res) => {
+router.post('/orders', ensureAuth, (req, res) => {
     return res.redirect(`/orders`, {
         user: req.user
     })
@@ -99,7 +99,7 @@ router.get('/orders', ensureAuth, async(req, res) => {
     }
 })
 
-router.get('/order-details/:orderId', async(req, res) => {
+router.get('/order-details/:orderId', ensureAuth, async(req, res) => {
     try {
         const order = await Order.findOne({ orderId: req.params.orderId })
         if(!order){
