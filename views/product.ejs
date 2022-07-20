@@ -57,8 +57,8 @@
                         let productDetails = undefined;
 
                         window.onload = async () => {
-                            await fetch(`http://13.58.168.111:5544/api/<%= categoryId %>/product`)
-                                .then(res => res.json())
+                            await fetch(`/api/<%= categoryId %>/product`)
+                            .then(res => res.json())
                                 .then(res => {
                                     if (res.data.length > 0) {
                                         categoryName = res.data[0].categoryName;

@@ -72,12 +72,12 @@
                     let data;
                     
                     window.addEventListener('DOMContentLoaded', async() => {
-                        await fetch('http://13.58.168.111:5544/api/61212df361090c6380388817/product')
+                        await fetch('/api/61212df361090c6380388817/product')
                         .then(res => res.json())
                         .then(res => {
                             data = res.data;
-                            parentDiv.innerHTML = ''
                             console.log(data)
+                            parentDiv.innerHTML = ''
                             for(var i = 0; i < data.length; i++){
                                 if(i != 2){
 
@@ -117,6 +117,7 @@
                             }
                         })
                         .catch(err => {
+                            console.log(err)
                             alert("Error while loading Electric Vehicles!")
                         })
                     }, false);

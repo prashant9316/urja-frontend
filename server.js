@@ -119,6 +119,7 @@ const IndexRouter = require('./src/vroutes/index')
 const OrderRouter = require('./src/routes/order')
 const RazorpayRouter = require('./src/routes/payments')
 const CartRouter = require('./src/routes/cart')
+const ExternalApiRouter = require('./src/routes/eApi')
 
 
 
@@ -128,6 +129,7 @@ app.use('/', IndexRouter)
 app.use('/', OrderRouter)
 app.use('/', RazorpayRouter)
 app.use('/cart/', CartRouter)
+app.use('/api/', ExternalApiRouter)
 
 
 app.listen(process.env.PORT, () => {

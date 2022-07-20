@@ -58,7 +58,7 @@
                         let categoryName = ''
 
                         window.onload = async() => {
-                            await fetch(`http://13.58.168.111:5544/api/${categoryId}/product`)
+                            await fetch(`/api/${categoryId}/product`)
                             .then(res => res.json())
                             .then(res => {
                                 console.log(res)
