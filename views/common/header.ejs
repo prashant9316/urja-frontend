@@ -175,6 +175,17 @@
                                         <li><a href="/electric-vehicles">Electric Vehicles</a></li>
                                         <li><a href="/projects">Projects</a></li>
                                         <li><a href="/contact">Contact Us</a></li>
+                                        <li class="menu-item-has-children"><a href="#">User</a>
+                                            <ul class="sub-menu">
+                                                <% if(user==null) { %>
+                                                <li><a href="/login" id="login-dropdown">Login</a></li>
+                                                <% } else { %>
+                                                <li><a href="/cart" id="cart-dropdown">Cart</a></li>
+                                                <li><a href="/orders" id="orders-dropdown">Orders</a></li>
+                                                <li><a href="/logout" id="logout">Logout</a></li>
+                                                <% } %>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -187,8 +198,8 @@
                                 <div class="header__search">
                                     <a class="search-btn nav-search " href="/cart">
                                         <i class="fa fa-user"></i></a>
-                                    <a class="side-toggle d-lg-none" href="javascript:void(0)"><i
-                                            class="fal fa-bars"></i></a>
+                                    <!-- <a class="side-toggle d-lg-none" href="javascript:void(0)"><i
+                                            class="fal fa-bars"></i></a> -->
                                 </div>
                             <% } %>
                             <div class="header__search">
@@ -207,7 +218,6 @@
             </div>
         </div>
     </header>
-
 
     <div class="fix">
         <div class="side-info">
