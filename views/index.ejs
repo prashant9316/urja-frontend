@@ -3,26 +3,38 @@
             <main>
                 <div class="post-content">
                     <div>
-                        <div class="banner-flex-wrap" style="display: flex; flex-direction: column; ">
+                        <style>
+                            
+                            @media only screen and (min-width:300px) and (max-width:700px) {
+                                #carousel {
+                                    width: 100%;
+                                }
+                            }
+                        </style>
+                        
+                        <div class="banner-flex-wrap" id="carousel" style="display: flex; flex-direction: column; ">
                             <div class="banner scroll-button-container banner-fixed-attachment banner-full-height has-heading"
                                 data-transition-duration="0.5" data-rapid-transition-duration="0.1"
                                 data-transition-wait="5" data-transition-type="fade">
                                 <div class="banner-slideshow">
-                                    <div data-bgd-image="/images/carousel/first.jpeg"
+                                    <div 
                                         class="banner-slideshow-item banner-slideshow-item-center show"
+                                        id="image-1"
                                         style="background-image: url('/images/carousel/first.jpeg');">
                                         <div class="banner-overlay banner-overlay-dark"></div>
                                         <div>
                                         </div>
                                     </div>
-                                    <div data-bgd-image="/images/carousel/second.jpg"
+                                    <div 
+                                        id="image-2"
                                         class="banner-slideshow-item banner-slideshow-item-center"
                                         style="background-image: url('/images/carousel/second.jpg');">
                                         <div class="banner-overlay banner-overlay-dark"></div>
                                         <div>
                                         </div>
                                     </div>
-                                    <div data-bgd-image="/images/carousel/third.jpg"
+                                    <div 
+                                        id="image-3"
                                         class="banner-slideshow-item banner-slideshow-item-center"
                                         style="background-image: url('/images/carousel/third.jpg');">
                                         <div class="banner-overlay banner-overlay-dark"></div>
@@ -72,6 +84,38 @@
 
                             </div>
                         </div>
+                        <script>
+                            // data-bgd-image="/images/carousel/first.jpeg"
+                            // if(screen.width < 700){
+                            //     console.log("Setting Vertical images")
+                            //     setVerticalImages()
+                            // }
+
+                            const setVerticalImages = () => {
+                                document.getElementById('image-1').style.backgroundImage = "url('/images/carousel/vertical-1.jpg')";
+                                document.getElementById('image-2').style.backgroundImage = "url('/images/carousel/vertical-2.jpg')";
+                                document.getElementById('image-3').style.backgroundImage = "url('/images/carousel/vertical-3.jpg')";
+                            }
+                            const setHorizontalImages = () => {
+                                document.getElementById('image-1').style.backgroundImage = "url('/images/carousel/first.jpeg')";
+                                document.getElementById('image-2').style.backgroundImage = "url('/images/carousel/second.jpg')";
+                                document.getElementById('image-3').style.backgroundImage = "url('/images/carousel/third.jpg')";
+                            }
+                            
+                            document.onload = eventResizeCarousel()
+                            
+
+                            
+                            addEventListener('resize', eventResizeCarousel)
+                            function eventResizeCarousel(e) {
+                                console.log(e)
+                                if(screen.width < 700){
+                                    setVerticalImages()
+                                } else {
+                                    setHorizontalImages()
+                                }
+                            }
+                        </script>
                         <section class="soco-bike-info-slider">
                             <div>
                                 <div class="main">
